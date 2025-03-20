@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Banner from "@/components/Banner";
+import Providers from "@/lib/providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,14 +29,16 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Header />
-        <div className="flex flex-col pt-9 min-h-screen">
-          <Banner />
-          <main className="flex-1 flex flex-col w-full bg-amber-300 max-w-[1200px] mx-auto">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <Providers>
+          <Header />
+          <div className="flex flex-col pt-9 min-h-screen">
+            <Banner />
+            <main className="flex-1 flex flex-col w-full bg-amber-300 max-w-[1200px] mx-auto">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   );
