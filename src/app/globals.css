@@ -10,6 +10,7 @@
 @theme {
   --color-header-pink: #ffb2b2;
   --color-footer-gray: #e1e1e1;
+  --color-gray-bg: #ebebeb;
 }
 @media (prefers-color-scheme: dark) {
   :root {
