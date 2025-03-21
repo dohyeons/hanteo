@@ -45,12 +45,9 @@ export default function Page() {
   }, [inView, isFetchingNextPage, hasNextPage]);
 
   if (error) {
-    return (
-      <div className="flex flex-1 items-center justify-center">
-        <p>목록 조회 중 에러가 발생했습니다.</p>
-      </div>
-    );
+    throw new Error("목록 조회 중 에러가 발생했습니다.");
   }
+
   return (
     <>
       {data?.pages.map((page) =>
