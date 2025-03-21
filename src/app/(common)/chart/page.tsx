@@ -1,6 +1,6 @@
 "use client";
 
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect } from "react";
@@ -26,7 +26,7 @@ const fetchPosts = async ({
 };
 
 export default function Page() {
-  const { data, error, isFetchingNextPage, hasNextPage, fetchNextPage } = useInfiniteQuery({
+  const { data, error, isFetchingNextPage, hasNextPage, fetchNextPage } = useSuspenseInfiniteQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
     getNextPageParam: (lastPage) => {
