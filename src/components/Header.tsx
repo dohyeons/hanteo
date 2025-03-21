@@ -1,5 +1,5 @@
 import DragScrollContainer from "@/components/DragScrollContainer";
-import Link from "next/link";
+import NavItem from "@/components/NavItem";
 
 // Define navigation items in an array for better scalability
 const NAV_ITEMS = [
@@ -17,9 +17,7 @@ export default function Header() {
       <DragScrollContainer>
         <ul className="w-full min-w-[450px] gap-4 max-w-[1200px] h-full flex mx-auto">
           {NAV_ITEMS.map((item) => (
-            <li key={item.path}>
-              <Link href={item.path}>{item.label}</Link>
-            </li>
+            <NavItem key={item.label} label={item.label} path={item.path} />
           ))}
         </ul>
       </DragScrollContainer>
