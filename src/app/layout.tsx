@@ -32,13 +32,14 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           <Header />
-          <SwipeRouter>
-            <div className="flex flex-col pt-9 min-h-screen">
-              <Banner />
+
+          <div className="flex flex-col pt-9 min-h-screen">
+            <Banner />
+            <SwipeRouter>
               <main className="flex-1 flex flex-col w-full max-w-[1200px] mx-auto">{children}</main>
-              <Footer />
-            </div>
-          </SwipeRouter>
+            </SwipeRouter>
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>
