@@ -29,10 +29,7 @@ export default function ChartPage() {
       queryKey={["chart"]}
       fetchFunction={fetchPosts}
       renderItem={(item) => (
-        <div
-          key={item.id}
-          className="bg-white rounded-lg flex gap-4 w-full shadow-[0_2px_8px_rgba(0,0,0,0.15)]"
-        >
+        <div key={item.id} className="bg-white rounded-lg flex gap-4 w-full shadow-card">
           <Image
             src={"/default_image.jpg"}
             alt={"순위 이미지"}
