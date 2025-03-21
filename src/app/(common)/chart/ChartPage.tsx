@@ -25,9 +25,9 @@ const fetchPosts = async ({
   }
 };
 
-export default function Page() {
+export default function ChartPage() {
   const { data, error, isFetchingNextPage, hasNextPage, fetchNextPage } = useSuspenseInfiniteQuery({
-    queryKey: ["event"],
+    queryKey: ["chart"],
     queryFn: fetchPosts,
     getNextPageParam: (lastPage) => {
       return lastPage.nextPage;

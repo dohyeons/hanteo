@@ -1,4 +1,6 @@
 import { useSuspenseInfiniteQuery, UseSuspenseInfiniteQueryOptions } from "@tanstack/react-query";
+import { useEffect, useCallback } from "react";
+import { useInView } from "react-intersection-observer";
 
 type GatheringListProps<T> = {
   render: (item: T) => React.ReactNode;
@@ -6,12 +8,32 @@ type GatheringListProps<T> = {
   queryOption: UseSuspenseInfiniteQueryOptions<T[], Error>;
 };
 
-export default function MypageList<T>({
+export default function ContentList<T>({
   render,
   emptyMessage,
   queryOption,
 }: GatheringListProps<T>) {
-  const { data, error } = useSuspenseInfiniteQuery({ ...queryOption, staleTime: 300000 });
+  const { data, error, isFetchingNextPage, hasNextPage, fetchNextPage } = useSuspenseInfiniteQuery({
+    ...queryOption,
+    staleTime: 300000,
+  });
+
+  const { ref, inView } = useInView({
+    threshold: 0.1, // ✅ 10%만 보여도 트리거
+    triggerOnce: false,
+  });
+
+  const handleFetchNextPage = useCallback(() => {
+    if (hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  useEffect(() => {
+    if (inView) {
+      handleFetchNextPage();
+    }
+  }, [inView, handleFetchNextPage]);
 
   if (error) {
     return (
@@ -20,10 +42,16 @@ export default function MypageList<T>({
       </div>
     );
   }
+
+  console.log(data);
+  const content = data.pages.flatMap((page) => page);
   return (
     <>
-      {data.length ? (
-        <>{data.map((item) => render(item))}</>
+      {content.length ? (
+        <>
+          {content.map((item) => render(item))}
+          <div ref={ref}>{isFetchingNextPage ? "Loading more..." : " "}</div>
+        </>
       ) : (
         <div className="flex flex-1 items-center justify-center">
           <p>{emptyMessage}</p>
