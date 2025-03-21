@@ -52,30 +52,27 @@ export default function Page() {
     );
   }
   return (
-    <div className="p-4 flex flex-col gap-2">
-      <h2 className="text-2xl font-bold">차트</h2>
-      <div className="flex flex-col gap-4 w-full">
-        {data?.pages.map((page) =>
-          page.data.map((item) => (
-            <div key={item.id} className="bg-white rounded-lg flex gap-4 w-full">
-              <Image
-                src={"/default_image.jpg"}
-                alt={"순위 이미지"}
-                width={1280}
-                height={850}
-                className="max-w-[100px] md:max-w-[200px] w-full rounded-lg"
-              />
-              <div className="flex flex-col">
-                <h3 className="text-lg font-bold line-clamp-1 overflow-hidden text-ellipsis">
-                  {item.title}
-                </h3>
-                <p className="line-clamp-2 overflow-hidden text-ellipsis">{item.body}</p>
-              </div>
+    <>
+      {data?.pages.map((page) =>
+        page.data.map((item) => (
+          <div key={item.id} className="bg-white rounded-lg flex gap-4 w-full">
+            <Image
+              src={"/default_image.jpg"}
+              alt={"순위 이미지"}
+              width={1280}
+              height={850}
+              className="max-w-[100px] md:max-w-[200px] w-full rounded-lg"
+            />
+            <div className="flex flex-col">
+              <h3 className="text-lg font-bold line-clamp-1 overflow-hidden text-ellipsis">
+                {item.title}
+              </h3>
+              <p className="line-clamp-2 overflow-hidden text-ellipsis">{item.body}</p>
             </div>
-          )),
-        )}
-        <div ref={ref}>{isFetchingNextPage ? "Loading more..." : " "}</div>
-      </div>
-    </div>
+          </div>
+        )),
+      )}
+      <div ref={ref}>{isFetchingNextPage ? "Loading more..." : " "}</div>
+    </>
   );
 }
