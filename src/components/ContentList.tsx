@@ -1,62 +1,49 @@
-// import { useSuspenseInfiniteQuery, UseSuspenseInfiniteQueryOptions } from "@tanstack/react-query";
-// import { useEffect, useCallback } from "react";
-// import { useInView } from "react-intersection-observer";
+"use client";
 
-// type GatheringListProps<T> = {
-//   render: (item: T) => React.ReactNode;
-//   emptyMessage: string;
-//   queryOption: UseSuspenseInfiniteQueryOptions<T[], Error>;
-// };
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
-// export default function ContentList<T>({
-//   render,
-//   emptyMessage,
-//   queryOption,
-// }: GatheringListProps<T>) {
-//   const { data, error, isFetchingNextPage, hasNextPage, fetchNextPage } = useSuspenseInfiniteQuery({
-//     ...queryOption,
-//     staleTime: 300000,
-//   });
+type Item = {
+  id: number;
+  title: string;
+  body: string;
+};
 
-//   const { ref, inView } = useInView({
-//     threshold: 0.1, // ✅ 10%만 보여도 트리거
-//     triggerOnce: false,
-//   });
+type ContentListProps = {
+  queryKey: string[];
+  fetchFunction: ({
+    pageParam,
+  }: {
+    pageParam: number;
+  }) => Promise<{ data: Item[]; nextPage: number | null }>;
+  renderItem: (item: Item) => React.ReactNode;
+};
 
-//   const handleFetchNextPage = useCallback(() => {
-//     if (hasNextPage && !isFetchingNextPage) {
-//       fetchNextPage();
-//     }
-//   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+export default function ContentList({ queryKey, fetchFunction, renderItem }: ContentListProps) {
+  const { data, error, isFetchingNextPage, hasNextPage, fetchNextPage } = useSuspenseInfiniteQuery({
+    queryKey: queryKey,
+    queryFn: fetchFunction,
+    getNextPageParam: (lastPage) => lastPage.nextPage,
+    initialPageParam: 1,
+  });
 
-//   useEffect(() => {
-//     if (inView) {
-//       handleFetchNextPage();
-//     }
-//   }, [inView, handleFetchNextPage]);
+  const { ref, inView } = useInView({ threshold: 0.5, triggerOnce: false });
 
-//   if (error) {
-//     return (
-//       <div className="flex flex-1 items-center justify-center">
-//         <p>목록 조회 중 에러가 발생했습니다.</p>
-//       </div>
-//     );
-//   }
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, isFetchingNextPage, hasNextPage]);
 
-//   console.log(data);
-//   const content = data.pages.flatMap((page) => page);
-//   return (
-//     <>
-//       {content.length ? (
-//         <>
-//           {content.map((item) => render(item))}
-//           <div ref={ref}>{isFetchingNextPage ? "Loading more..." : " "}</div>
-//         </>
-//       ) : (
-//         <div className="flex flex-1 items-center justify-center">
-//           <p>{emptyMessage}</p>
-//         </div>
-//       )}
-//     </>
-//   );
-// }
+  if (error) {
+    throw new Error("데이터를 불러오는 중 오류 발생");
+  }
+
+  return (
+    <>
+      {data?.pages.map((page) => page.data.map((item) => renderItem(item)))}
+      <div ref={ref}>{isFetchingNextPage ? "Loading more..." : " "}</div>
+    </>
+  );
+}
