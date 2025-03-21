@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Banner from "@/components/Banner";
 import Providers from "@/lib/providers";
+import SwipeRouter from "@/components/SwiperRouter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,11 +32,13 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           <Header />
-          <div className="flex flex-col pt-9 min-h-screen">
-            <Banner />
-            <main className="flex-1 flex flex-col w-full max-w-[1200px] mx-auto">{children}</main>
-            <Footer />
-          </div>
+          <SwipeRouter>
+            <div className="flex flex-col pt-9 min-h-screen">
+              <Banner />
+              <main className="flex-1 flex flex-col w-full max-w-[1200px] mx-auto">{children}</main>
+              <Footer />
+            </div>
+          </SwipeRouter>
         </Providers>
       </body>
     </html>
