@@ -33,9 +33,7 @@ export default function RootLayout({
           <Header />
           <div className="flex flex-col pt-9 min-h-screen">
             <Banner />
-            <main className="flex-1 flex flex-col w-full bg-amber-300 max-w-[1200px] mx-auto">
-              {children}
-            </main>
+            <main className="flex-1 flex flex-col w-full max-w-[1200px] mx-auto">{children}</main>
             <Footer />
           </div>
         </Providers>
