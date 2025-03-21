@@ -37,7 +37,7 @@ export default function ChartPage() {
             height={850}
             className="max-w-[100px] md:max-w-[200px] w-full rounded-lg"
           />
-          <div className="flex flex-col">
+          <div className="flex flex-col p-2 ">
             <h3 className="text-lg font-bold line-clamp-1 overflow-hidden text-ellipsis">
               {item.title}
             </h3>
