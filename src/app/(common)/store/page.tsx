@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   icons: "/icon.ico",
   openGraph: {
     title: "한터글로벌 스토어",
-    description: "K-POP 구매",
+    description: "K-POP 굿즈를 구매해보세요!",
   },
 };
 
