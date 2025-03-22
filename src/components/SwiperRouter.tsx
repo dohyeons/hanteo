@@ -28,7 +28,7 @@ export default function SwipeRouter({ children }: { children: React.ReactNode })
   });
 
   return (
-    <div {...handlers} className="h-full w-full touch-pan-y">
+    <div {...handlers} className="flex flex-col flex-1 touch-pan-y">
       {children}
     </div>
   );
