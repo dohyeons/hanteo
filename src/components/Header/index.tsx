@@ -1,5 +1,5 @@
-import DragScrollContainer from "@/components/DragScrollContainer";
-import NavItem from "@/components/NavItem";
+import DragScrollContainer from "@/components/Header/DragScrollContainer";
+import NavItem from "@/components/Header/NavItem";
 
 // Define navigation items in an array for better scalability
 const NAV_ITEMS = [
