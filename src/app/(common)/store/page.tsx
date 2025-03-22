@@ -1,8 +1,8 @@
 "use client";
 
+import ContentCard from "@/components/ContentCard";
 import ContentList from "@/components/ContentList";
 import axios from "axios";
-import Image from "next/image";
 
 type Post = {
   id: number;
@@ -28,23 +28,7 @@ export default function Page() {
     <ContentList
       queryKey={["store"]}
       fetchFunction={fetchPosts}
-      renderItem={(item) => (
-        <div key={item.id} className="bg-white rounded-lg flex gap-4 w-full shadow-card">
-          <Image
-            src={"/default_image.jpg"}
-            alt={"순위 이미지"}
-            width={1280}
-            height={850}
-            className="max-w-[100px] md:max-w-[200px] w-full rounded-lg"
-          />
-          <div className="flex flex-col">
-            <h3 className="text-lg font-bold line-clamp-1 overflow-hidden text-ellipsis">
-              {item.title}
-            </h3>
-            <p className="line-clamp-2 overflow-hidden text-ellipsis">{item.body}</p>
-          </div>
-        </div>
-      )}
+      renderItem={(item) => <ContentCard key={item.id} title={item.title} body={item.body} />}
     />
   );
 }
