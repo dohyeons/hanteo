@@ -1,15 +1,30 @@
-"use client";
-
-import ContentCard from "@/components/ContentCard";
-import ContentList from "@/components/ContentList";
+import StorePage from "@/app/(common)/store/StorePage";
 import fetchPosts from "@/lib/\bapi/fetchPosts";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { Metadata } from "next";
 
-export default function Page() {
+export const metadata: Metadata = {
+  title: "한터글로벌 | 스토어",
+  description: "K-POP 굿즈를 구매해보세요!",
+  icons: "/icon.ico",
+  openGraph: {
+    title: "한터글로벌 스토어",
+    description: "K-POP 구매",
+  },
+};
+
+export default async function Page() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ["store"],
+    queryFn: ({ pageParam = 1 }) => fetchPosts({ pageParam }),
+    initialPageParam: 1,
+  });
+
   return (
-    <ContentList
-      queryKey={["store"]}
-      fetchFunction={fetchPosts}
-      renderItem={(item) => <ContentCard key={item.id} title={item.title} body={item.body} />}
-    />
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <StorePage />
+    </HydrationBoundary>
   );
 }

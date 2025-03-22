@@ -4,10 +4,10 @@ import ContentCard from "@/components/ContentCard";
 import ContentList from "@/components/ContentList";
 import fetchPosts from "@/lib/\bapi/fetchPosts";
 
-export default function ChartPage() {
+export default function ChargingPage() {
   return (
     <ContentList
-      queryKey={["chart"]}
+      queryKey={["charging"]}
       fetchFunction={fetchPosts}
       renderItem={(item) => <ContentCard key={item.id} title={item.title} body={item.body} />}
     />

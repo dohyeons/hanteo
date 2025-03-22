@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "실시간 K-POP 순위를 확인해보세요!",
   icons: "/icon.ico",
   openGraph: {
-    title: "한터차트",
+    title: "한터글로벌 차트",
     description: "실시간 K-POP 순위를 확인해보세요!",
   },
 };

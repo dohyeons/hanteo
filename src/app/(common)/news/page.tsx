@@ -1,15 +1,30 @@
-"use client";
-
-import ContentCard from "@/components/ContentCard";
-import ContentList from "@/components/ContentList";
+import NewsPage from "@/app/(common)/news/NewsPage";
 import fetchPosts from "@/lib/\bapi/fetchPosts";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { Metadata } from "next";
 
-export default function Page() {
+export const metadata: Metadata = {
+  title: "한터글로벌 | 뉴스",
+  description: "최신 K-POP 뉴스를 확인해보세요!",
+  icons: "/icon.ico",
+  openGraph: {
+    title: "한터글로벌 뉴스",
+    description: "최신 K-POP 뉴스",
+  },
+};
+
+export default async function Page() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ["event"],
+    queryFn: ({ pageParam = 1 }) => fetchPosts({ pageParam }),
+    initialPageParam: 1,
+  });
+
   return (
-    <ContentList
-      queryKey={["news"]}
-      fetchFunction={fetchPosts}
-      renderItem={(item) => <ContentCard key={item.id} title={item.title} body={item.body} />}
-    />
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <NewsPage />
+    </HydrationBoundary>
   );
 }

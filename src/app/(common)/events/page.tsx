@@ -1,15 +1,30 @@
-"use client";
-
-import ContentCard from "@/components/ContentCard";
-import ContentList from "@/components/ContentList";
+import EventsPage from "@/app/(common)/events/EventsPage";
 import fetchPosts from "@/lib/\bapi/fetchPosts";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { Metadata } from "next";
 
-export default function Page() {
+export const metadata: Metadata = {
+  title: "한터글로벌 | 이벤트",
+  description: "진행중인 이벤트를 확인하세요!",
+  icons: "/icon.ico",
+  openGraph: {
+    title: "한터글로벌 이벤트",
+    description: "진행중인 이벤트를 확인하세요!",
+  },
+};
+
+export default async function Page() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ["event"],
+    queryFn: ({ pageParam = 1 }) => fetchPosts({ pageParam }),
+    initialPageParam: 1,
+  });
+
   return (
-    <ContentList
-      queryKey={["event"]}
-      fetchFunction={fetchPosts}
-      renderItem={(item) => <ContentCard key={item.id} title={item.title} body={item.body} />}
-    />
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <EventsPage />
+    </HydrationBoundary>
   );
 }
