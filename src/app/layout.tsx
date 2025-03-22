@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   title: "한터글로벌",
   description: "글로벌 K-POP 산업의 리더, 한터글로벌입니다!",
   icons: "/icon.ico",
+  openGraph: {
+    title: "한터글로벌",
+    description: "글로벌 K-POP 산업의 리더, 한터글로벌입니다!",
+  },
 };
 
 export default function RootLayout({
