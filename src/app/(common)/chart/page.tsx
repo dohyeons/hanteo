@@ -1,24 +1,16 @@
 import ChartPage from "@/app/(common)/chart/ChartPage";
+import fetchPosts from "@/lib/\bapi/fetchPosts";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { Metadata } from "next";
 
-type Post = {
-  id: number;
-  title: string;
-  body: string;
-  userId: number;
-};
-const fetchPosts = async ({
-  pageParam = 1,
-}): Promise<{ data: Post[]; nextPage: number | null }> => {
-  try {
-    const res = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts?_page=${pageParam}&_limit=10`,
-    );
-    return { data: res.data, nextPage: res.data.length < 10 ? null : pageParam + 1 };
-  } catch {
-    throw new Error("Failed to fetch posts");
-  }
+export const metadata: Metadata = {
+  title: "한터글로벌 | 차트",
+  description: "실시간 K-POP 순위를 확인해보세요!",
+  icons: "/icon.ico",
+  openGraph: {
+    title: "한터차트",
+    description: "실시간 K-POP 순위를 확인해보세요!",
+  },
 };
 
 export default async function Page() {
