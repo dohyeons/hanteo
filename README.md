@@ -16,8 +16,8 @@
 ## 📦 설치 및 실행 방법
 
 ### 1. 저장소 클론
-git clone https://github.com/dohyeons/hanteo.git
-cd hanteo
+1. git clone https://github.com/dohyeons/hanteo.git
+2. cd hanteo
 
 ### 2. 패키지 설치
 npm install
