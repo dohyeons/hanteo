@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     title: "한터글로벌 이벤트",
     description: "진행중인 이벤트를 확인하세요!",
   },
+  keywords: ["한터", "이벤트", "K-POP", "한터글로벌"],
+  robots: "index, follow",
 };
 
 export default async function Page() {

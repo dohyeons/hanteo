@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     title: "한터글로벌 Whook",
     description: "한터글로벌 Whook",
   },
+  keywords: ["한터", "Whook", "한터글로벌"],
+  robots: "index, follow",
 };
 
 export default async function Page() {

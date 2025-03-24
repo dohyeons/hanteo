@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     title: "한터글로벌 뉴스",
     description: "최신 K-POP 뉴스",
   },
+  keywords: ["한터", "K-POP 뉴스", "한터글로벌"],
+  robots: "index, follow",
 };
 
 export default async function Page() {

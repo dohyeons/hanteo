@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     title: "한터글로벌 차트",
     description: "실시간 K-POP 순위를 확인해보세요!",
   },
+  keywords: ["한터", "K-POP 차트", "한터글로벌"],
+  robots: "index, follow",
 };
 
 export default async function Page() {
