@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "한터글로벌 이벤트",
     description: "진행중인 이벤트를 확인하세요!",
-    images: [{ url: "/og/event.png" }],
+    images: [{ url: "/og/event.png", width: 100, height: 100 }],
   },
   keywords: ["한터", "이벤트", "K-POP", "한터글로벌"],
   robots: "index, follow",
