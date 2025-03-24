@@ -1,5 +1,7 @@
 "use client";
 
+import { ArrowUpToLine } from "lucide-react";
+
 export default function ScrollToTop() {
   const scrollToTop = () => {
     window.scroll({ top: 0, behavior: "smooth" });
@@ -10,7 +12,7 @@ export default function ScrollToTop() {
       className={`group flex size-9 cursor-pointer transform items-center justify-center rounded-full bg-blue-6 transition-all duration-300 ease-in-out `}
       onClick={scrollToTop}
     >
-      ↑
+      <ArrowUpToLine />
     </button>
   );
 }
