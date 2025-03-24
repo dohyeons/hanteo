@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "한터충전소",
     description: "굿즈 구매를 위한 캐시를 충전하세요!",
-    images: [{ url: "/og/charging.png", width: 1200, height: 630 }],
+    images: [{ url: "/og/charging.png", width: 800, height: 400 }],
   },
   keywords: ["한터", "충전소", "굿즈", "캐시", "한터글로벌"],
   robots: "index, follow",

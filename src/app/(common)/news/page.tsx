@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "한터글로벌 뉴스",
     description: "최신 K-POP 뉴스",
-    images: [{ url: "/og/news.png", width: 1200, height: 630 }],
+    images: [{ url: "/og/news.png", width: 800, height: 400 }],
   },
   keywords: ["한터", "K-POP 뉴스", "한터글로벌"],
   robots: "index, follow",

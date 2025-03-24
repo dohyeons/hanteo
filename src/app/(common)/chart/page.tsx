@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "한터글로벌 차트",
     description: "실시간 K-POP 순위를 확인해보세요!",
-    images: [{ url: "/og/chart.png", width: 1200, height: 630 }],
+    images: [{ url: "/og/chart.png", width: 800, height: 400 }],
   },
   keywords: ["한터", "K-POP 차트", "한터글로벌"],
   robots: "index, follow",
