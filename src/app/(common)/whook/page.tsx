@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "한터글로벌 Whook",
     description: "한터글로벌 Whook",
+    images: [{ url: "/og/whook.png", width: 1200, height: 630 }],
   },
   keywords: ["한터", "Whook", "한터글로벌"],
   robots: "index, follow",

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "한터글로벌 스토어",
     description: "K-POP 굿즈를 구매해보세요!",
+    images: [{ url: "/og/store.png", width: 1200, height: 630 }],
   },
   keywords: ["한터", "스토어", "굿즈", "한터글로벌"],
   robots: "index, follow",
