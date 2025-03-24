@@ -1,10 +1,12 @@
 "use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
+import { useRef, useState } from "react"; // Added import
+import { Pause, Play } from "lucide-react";
 
 // 배너 목록 정의
 const banners = [
@@ -46,16 +48,33 @@ const banners = [
 ];
 
 export default function Carousel() {
+  const swiperRef = useRef<SwiperClass>(null); // Added swiperRef
+  const [isPlaying, setIsPlaying] = useState(true); // Added isPlaying state
+
+  const toggleAutoplay = () => {
+    // Added toggleAutoplay function
+    if (!swiperRef.current) return;
+    if (isPlaying) {
+      swiperRef.current.autoplay.stop();
+    } else {
+      swiperRef.current.autoplay.start();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
   return (
     <div className="w-full max-w-[1200px] mx-auto my-3">
       {/* Swiper 슬라이더 영역 */}
       <Swiper
-        modules={[Pagination]}
+        modules={[Pagination, Autoplay]}
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
         spaceBetween={20}
         slidesPerView={1.2}
         loop={true}
         centeredSlides={true}
         pagination={{ el: ".custom-pagination", clickable: true }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        speed={1500}
       >
         {/* 각 배너 슬라이드 렌더링 */}
         {banners.map((banner) => (
@@ -91,8 +110,16 @@ export default function Carousel() {
         ))}
       </Swiper>
 
-      {/* 커스텀 페이지네이션(밑에 점) 렌더링 */}
-      <div className="custom-pagination transform flex justify-center gap-2"></div>
+      {/* 커스텀 페이지네이션 및 자동 회전 버튼 렌더링 */}
+      <div className="flex items-center justify-center gap-4 mt-2">
+        <div className="custom-pagination flex justify-center items-center gap-2" />
+        <button
+          onClick={toggleAutoplay}
+          className="hover:cursor-pointer text-gray-300 hover:text-pink-400"
+        >
+          {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+        </button>
+      </div>
     </div>
   );
 }
