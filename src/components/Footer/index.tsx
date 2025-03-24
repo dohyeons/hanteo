@@ -1,4 +1,4 @@
-import ScrollToTop from "@/components/ScrollToTop";
+import ScrollToTop from "@/components/Footer/ScrollToTop";
 
 export default function Footer() {
   return (
