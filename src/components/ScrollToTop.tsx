@@ -1,8 +1,10 @@
 "use client";
 
+// 페이지 상단으로 스크롤하는 버튼
 import { ArrowUpToLine } from "lucide-react";
 
 export default function ScrollToTop() {
+  // 스크롤을 맨 위로 이동시키는 함수
   const scrollToTop = () => {
     window.scroll({ top: 0, behavior: "smooth" });
   };

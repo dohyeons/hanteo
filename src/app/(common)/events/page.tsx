@@ -3,6 +3,7 @@ import fetchPosts from "@/lib/\bapi/fetchPosts";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { Metadata } from "next";
 
+// metadata 설정
 export const metadata: Metadata = {
   title: "한터글로벌 | 이벤트",
   description: "진행중인 이벤트를 확인하세요!",
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   const queryClient = new QueryClient();
 
+  // 데이터 prefetch
   await queryClient.prefetchInfiniteQuery({
     queryKey: ["event"],
     queryFn: ({ pageParam = 1 }) => fetchPosts({ pageParam }),

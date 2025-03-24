@@ -3,6 +3,7 @@ import fetchPosts from "@/lib/\bapi/fetchPosts";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { Metadata } from "next";
 
+// metadata 설정
 export const metadata: Metadata = {
   title: "한터글로벌 | 차트",
   description: "실시간 K-POP 순위를 확인해보세요!",
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   const queryClient = new QueryClient();
 
+  // 데이터 prefetch
   await queryClient.prefetchInfiniteQuery({
     queryKey: ["chart"],
     queryFn: ({ pageParam = 1 }) => fetchPosts({ pageParam }),

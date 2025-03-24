@@ -37,8 +37,8 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           <Header />
-
           <div className="flex flex-col pt-9 min-h-screen">
+            {/* 배너 */}
             <Banner />
             <SwipeRouter>
               <main className="flex-1 flex flex-col w-full max-w-[1200px] mx-auto">{children}</main>

@@ -3,6 +3,7 @@ import fetchPosts from "@/lib/\bapi/fetchPosts";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { Metadata } from "next";
 
+// metadata 설정
 export const metadata: Metadata = {
   title: "한터글로벌 | 스토어",
   description: "K-POP 굿즈를 구매해보세요!",
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   const queryClient = new QueryClient();
 
+  // 데이터 prefetch
   await queryClient.prefetchInfiniteQuery({
     queryKey: ["store"],
     queryFn: ({ pageParam = 1 }) => fetchPosts({ pageParam }),

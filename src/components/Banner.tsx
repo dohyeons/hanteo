@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
 
+// 배너 목록 정의
 const banners = [
   {
     id: 1,
@@ -47,6 +48,7 @@ const banners = [
 export default function Carousel() {
   return (
     <div className="w-full max-w-[1200px] mx-auto my-3">
+      {/* Swiper 슬라이더 영역 */}
       <Swiper
         modules={[Pagination]}
         spaceBetween={20}
@@ -55,10 +57,12 @@ export default function Carousel() {
         centeredSlides={true}
         pagination={{ el: ".custom-pagination", clickable: true }}
       >
+        {/* 각 배너 슬라이드 렌더링 */}
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
             <a href={banner.link} target="_blank" rel="noopener noreferrer" className="block">
               <div className="shadow-[0_1px_10px_rgba(0,0,0,0.1)] mb-3 border border-gray-200 w-full rounded-lg flex flex-col gap-4 overflow-hidden cursor-pointer">
+                {/* 배너 이미지 */}
                 <Image
                   src={banner.image}
                   alt={`Banner ${banner.id}`}
@@ -72,6 +76,7 @@ export default function Carousel() {
                     <div>
                       <span className="font-bold max-w-[180px] truncate block">{banner.title}</span>
                     </div>
+                    {/* 배너 텍스트 및 투표 버튼 */}
                     <button className="font-bold text-sm cursor-pointer hover:border-pink-300 hover:text-pink-300 text-pink-400 border border-pink-400 rounded-full px-2">
                       투표하기
                     </button>
@@ -86,7 +91,7 @@ export default function Carousel() {
         ))}
       </Swiper>
 
-      {/* TailwindCSS로 스타일 적용된 페이지네이션 */}
+      {/* 커스텀 페이지네이션(밑에 점) 렌더링 */}
       <div className="custom-pagination transform flex justify-center gap-2"></div>
     </div>
   );
