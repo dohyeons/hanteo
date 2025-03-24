@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import BannerItem from "@/components/Banner/BannerItem";
 import AutoPlayControl from "@/components/Banner/AutoPlayControl";
-import useAutoplaySwiper from "@/hooks/useAutoplaySwiper";
+import useSwiperAutoplay from "@/hooks/useSwiperAutoplay";
 
 // 배너 목록 정의
 const BANNERS = [
@@ -48,7 +48,7 @@ const BANNERS = [
 ];
 
 export default function Carousel() {
-  const { swiperRef, isPlaying, toggleAutoplay } = useAutoplaySwiper();
+  const { swiperRef, isPlaying, toggleAutoplay } = useSwiperAutoplay();
 
   return (
     <div className="w-full max-w-[1200px] mx-auto my-3">
