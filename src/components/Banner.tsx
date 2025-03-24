@@ -9,7 +9,7 @@ import { useRef, useState } from "react"; // Added import
 import { Pause, Play } from "lucide-react";
 
 // 배너 목록 정의
-const banners = [
+const BANNERS = [
   {
     id: 1,
     image: "/default_image.jpg",
@@ -77,7 +77,7 @@ export default function Carousel() {
         speed={1500}
       >
         {/* 각 배너 슬라이드 렌더링 */}
-        {banners.map((banner) => (
+        {BANNERS.map((banner) => (
           <SwiperSlide key={banner.id}>
             <a href={banner.link} target="_blank" rel="noopener noreferrer" className="block">
               <div className="shadow-[0_1px_10px_rgba(0,0,0,0.1)] mb-3 border border-gray-200 w-full rounded-lg flex flex-col gap-4 overflow-hidden cursor-pointer">
@@ -110,12 +110,14 @@ export default function Carousel() {
         ))}
       </Swiper>
 
-      {/* 커스텀 페이지네이션 및 자동 회전 버튼 렌더링 */}
-      <div className="flex items-center justify-center gap-4 mt-2">
-        <div className="custom-pagination flex justify-center items-center gap-2" />
+      {/* 커스텀 페이지네이션(밑에 점) 렌더링 */}
+      <div className="custom-pagination transform flex justify-center gap-2"></div>
+
+      {/* 자동 회전 버튼 */}
+      <div className="flex justify-center mt-2">
         <button
           onClick={toggleAutoplay}
-          className="hover:cursor-pointer text-gray-300 hover:text-pink-400"
+          className="hover:cursor-pointer text-gray-300  hover:text-pink-400"
         >
           {isPlaying ? <Pause size={16} /> : <Play size={16} />}
         </button>
